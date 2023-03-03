@@ -47,7 +47,7 @@ void Customer::setRate()
     std::cout << name_ << " Your balance: " << balance_ << "\nPlease place a rate(min rate: 40): ";
 
     std::cin >> rate_;
-    if (this->rate_ > balance_)
+    if (rate_ > balance_)
     {
         std::cout << "You don`t have so much money. You will skip this game\n";
         rate_ = 0;
