@@ -4,13 +4,16 @@
  
 class Casino
 {
+    std::string casinoName;
+    int countTable;
     double balance_;
     int* number_;
     int table;
     const double winningRatio = 1.5;
+   
 
 public:
-    Casino();
+    Casino(std::string _name);
 
     int spinWheel();
 

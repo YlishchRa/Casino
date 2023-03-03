@@ -1,7 +1,13 @@
 #include "Casino.h"
 #include <cstdlib>
 #include <ctime>
-Casino::Casino() : balance_{100000}, number_{new int[20]}, table{1} {}
+Casino::Casino(std::string _name) : balance_{100000},countTable{20}, number_{new int[countTable]}, table{1}, casinoName{_name}
+{
+    for (int i = 0; i < countTable; i++)
+    {
+        number_[i] = -1;
+    }
+}
 
 int Casino::spinWheel()
 {
@@ -15,27 +21,28 @@ void Casino::startGame(Customer* cst, int table, int players)
 
     for (int i = 0; i < players; i++)
     {
-        cst[i].chooseNumber();
+        
         cst[i].setRate();
+        cst[i].chooseNumber();
 
-
-        if(cst[i].getNumber() == number_[table])
+        if (cst[i].getNumber() == number_[table])
         {
-            cst[i].replenishBalance(cst[i].getRate() * winningRatio );
+            cst[i].updateBalance(cst[i].getRate() * winningRatio);
             cst[i].setWin(true);
+            this->balance_ -= cst[i].getRate() * winningRatio;
         }
         else
         {
-            cst[i].replenishBalance(cst[i].getRate() * -1);
+            cst[i].updateBalance(cst[i].getRate() * -1);
             cst[i].setWin(false);
+            this->balance_ += cst[i].getRate();
         }
     }
-
 }
 
-void Casino::showResults( Customer* cst, int table, int player) {
-
-
+void Casino::showResults(Customer* cst, int table, int player)
+{
+    std::cout << "\nCasino name: " << casinoName << "\n";
     std::cout << "Droped number: " << number_[table];
     std::cout << "\n----------------------------------------\n";
     for (int i = 0; i < player; i++)
@@ -43,6 +50,4 @@ void Casino::showResults( Customer* cst, int table, int player) {
         cst[i].showDataAboutCustomer();
     }
     std::cout << "----------------------------------------\n";
-
-
 }

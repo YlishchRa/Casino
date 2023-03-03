@@ -1,25 +1,22 @@
 #include "Customer.h"
 
-Customer::Customer() : win{0}, rate_{0} {}
+Customer::Customer() :  name_{"No name"}, win{0}, rate_{0}, balance_{0}, number_{int(-1)}{}
 
-Customer::Customer(std::string name) : win{0}, rate_{0}
-{
-    name_ = name;
-}
+Customer::Customer(std::string name) : name_{name}, win{0}, rate_{0}, balance_{0}, number_{int(-1)} {}
 
-Customer::Customer(std::string name, int money) : win{0}, rate_{0}
-{
-    name_ = name;
-    balance_ = money;
-}
+Customer::Customer(std::string name, double money) : name_{name}, win{0}, rate_{0}, balance_{money}, number_{-1} {}
 
 void Customer::chooseNumber()
 {
     std::cout << name_ << " Choose a number(0 - 100): ";
     std::cin >> number_;
+    if (number_ > 100 || number_ < 0)
+    {
+        std::cout << name_ << " you choose incorrect number. You will skip this game\n";
+    }
 }
 
-void Customer::replenishBalance(int money)
+void Customer::updateBalance(int money)
 {
     balance_ += money;
 }
@@ -47,12 +44,15 @@ int Customer::getNumber()
 
 void Customer::setRate()
 {
-    
-    std::cout << name_ << " Your balance: " << balance_ << "\nPlease place a rate(min rate: 40): "; 
+    std::cout << name_ << " Your balance: " << balance_ << "\nPlease place a rate(min rate: 40): ";
 
     std::cin >> rate_;
-    if(rate_ > balance_)
+    if (this->rate_ > balance_)
+    {
         std::cout << "You don`t have so much money. You will skip this game\n";
+        rate_ = 0;
+        number_ = -1;
+    }
 }
 
 int Customer::getRate()

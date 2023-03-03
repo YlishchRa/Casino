@@ -12,12 +12,12 @@ class Customer
 public:
     Customer();
     Customer(std::string name);
-    Customer(std::string name, int money);
+    Customer(std::string name, double money);
 
 
 
     void chooseNumber();
-    void replenishBalance(int money);
+    void updateBalance(int money);
     void massageAboutWin();
     void showDataAboutCustomer();
     int getNumber();

@@ -2,27 +2,36 @@
 //
 
 #include "Casino.h"
-#include "Customer.h"
 #include <iostream>
 using namespace std;
 int main()
 {
-    const int size = 5;
-    Casino casion;
-    Customer customers[size] = {Customer("Yura", 3000), Customer("Oleg", 2000), Customer("Tamara", 5000),
-                                Customer("Artem", 10000), Customer("Nastya", 500)};
+    const int size = 2;
+    Casino casion("Lucky 7's Palace");
+    Customer customers[size] = {Customer("Yura", 3000), Customer("Oleg", 2000)};
 
 
+    casion.showResults(customers,1,size);
     
 
-    casion.startGame(customers,1,size);
-
-    casion.showResults(customers,1,size);
-
 
     casion.startGame(customers,1,size);
-
     casion.showResults(customers,1,size);
+
+    casion.startGame(customers,2,size);
+    casion.showResults(customers,2,size);
+
+    Casino casion1("Royal Flush Casino");
+    Customer customers1[size] = {Customer("Tamara", 5000), Customer("Bogdan", 8000)};
+
+    casion1.startGame(customers1,1,size);
+    casion1.showResults(customers1,1,size);
+
+    casion1.startGame(customers1,2,size);
+    casion1.showResults(customers1,2,size);
+
+
+
     return 0;
 }
 
