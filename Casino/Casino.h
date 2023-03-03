@@ -48,6 +48,7 @@ class Casino
             table = tbl.table;
             number = tbl.number;
             players = tbl.players;
+            countPlayers = tbl.countPlayers;
             return *this;
         }
 

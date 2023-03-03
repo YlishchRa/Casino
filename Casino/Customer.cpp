@@ -44,7 +44,7 @@ int Customer::getNumber()
 
 void Customer::setRate()
 {
-    std::cout << name_ << " Your balance: " << balance_ << "\nPlease place a rate(min rate: 40): ";
+    std::cout << name_ << " Your balance: " << balance_ << "\nPlease place a rate: ";
 
     std::cin >> rate_;
     if (rate_ > balance_)

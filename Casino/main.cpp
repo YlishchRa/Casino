@@ -6,19 +6,19 @@
 using namespace std;
 int main()
 {
-   Customer customers[] = {Customer("Yura", 2000), Customer("Lesya", 500)};
+    Customer customers[] = {Customer("Yura", 2000), Customer("Lesya", 500)};
 
-   Casino casino("Royalty");
+    Casino casino("Royalty");
 
+    casino.startGame(customers, 1, 2);
 
+    casino.showResults(customers, 1, 2);
 
-   casino.startGame(customers, 1,2);
+    cout << casino;
+    casino.startGame(customers, 1, 2);
 
-   
-
-   cout << casino;
-
-   
+    casino.showResults(customers, 1, 2);
+    cout << casino;
 
     return 0;
 }

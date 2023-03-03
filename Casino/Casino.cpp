@@ -67,7 +67,7 @@ void Casino::startGame(Customer* cst, int table, int players)
 void Casino::showResults(Customer* cst, int table, int player)
 {
     std::cout << "\nCasino name: " << casinoName;
-    std::cout << "\nDroped number: " << tables[table].getNumber();
+    std::cout << "\nDroped number: " << tables[table].getNumber() << " by table: "<< tables[table].getTable();
     std::cout << "\n----------------------------------------\n";
     for (int i = 0; i < player; i++)
     {
