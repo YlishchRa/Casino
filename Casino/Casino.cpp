@@ -1,21 +1,48 @@
-// Casino.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#include "Casino.h"
+#include <cstdlib>
+#include <ctime>
+Casino::Casino() : balance_{100000}, number_{new int[20]}, table{1} {}
 
-#include <iostream>
-
-int main()
+int Casino::spinWheel()
 {
-    std::cout << "Hello World!\n";
+    srand(static_cast<unsigned int>(time(0)));
+    return rand() % 100;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void Casino::startGame(Customer* cst, int table, int players)
+{
+    number_[table] = spinWheel();
 
-// Tips for Getting Started:
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files
-//   to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    for (int i = 0; i < players; i++)
+    {
+        cst[i].chooseNumber();
+        cst[i].setRate();
+
+
+        if(cst[i].getNumber() == number_[table])
+        {
+            cst[i].replenishBalance(cst[i].getRate() * winningRatio );
+            cst[i].setWin(true);
+        }
+        else
+        {
+            cst[i].replenishBalance(cst[i].getRate() * -1);
+            cst[i].setWin(false);
+        }
+    }
+
+}
+
+void Casino::showResults( Customer* cst, int table, int player) {
+
+
+    std::cout << "Droped number: " << number_[table];
+    std::cout << "\n----------------------------------------\n";
+    for (int i = 0; i < player; i++)
+    {
+        cst[i].showDataAboutCustomer();
+    }
+    std::cout << "----------------------------------------\n";
+
+
+}
