@@ -6,31 +6,19 @@
 using namespace std;
 int main()
 {
-    const int size = 2;
-    Casino casion("Lucky 7's Palace");
-    Customer customers[size] = {Customer("Yura", 3000), Customer("Oleg", 2000)};
+   Customer customers[] = {Customer("Yura", 2000), Customer("Lesya", 500)};
+
+   Casino casino("Royalty");
 
 
-    casion.showResults(customers,1,size);
-    
 
+   casino.startGame(customers, 1,2);
 
-    casion.startGame(customers,1,size);
-    casion.showResults(customers,1,size);
+   
 
-    casion.startGame(customers,2,size);
-    casion.showResults(customers,2,size);
+   cout << casino;
 
-    Casino casion1("Royal Flush Casino");
-    Customer customers1[size] = {Customer("Tamara", 5000), Customer("Bogdan", 8000)};
-
-    casion1.startGame(customers1,1,size);
-    casion1.showResults(customers1,1,size);
-
-    casion1.startGame(customers1,2,size);
-    casion1.showResults(customers1,2,size);
-
-
+   
 
     return 0;
 }

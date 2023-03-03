@@ -6,7 +6,7 @@ Customer::Customer(std::string name) : name_{name}, win{0}, rate_{0}, balance_{0
 
 Customer::Customer(std::string name, double money) : name_{name}, win{0}, rate_{0}, balance_{money}, number_{-1} {}
 
-void Customer::chooseNumber()
+void Customer::chooseNumber()  
 {
     std::cout << name_ << " Choose a number(0 - 100): ";
     std::cin >> number_;
@@ -63,4 +63,16 @@ int Customer::getRate()
 void Customer::setWin(bool _win)
 {
     win = _win;
+}
+
+std::ostream& operator<<(std::ostream& output, const Customer& cstmr) {
+
+    output << "Name: " << cstmr.name_ << "\n\t\t" << "Number: " << cstmr.number_ << "\n\t\t" << "Rate: " << cstmr.rate_ << "\n\t\t";
+    if(cstmr.win)
+        output << "Status: Won\n\t\t";
+    else
+        output << "Status: Lost\n\t\t";
+
+
+return output;
 }

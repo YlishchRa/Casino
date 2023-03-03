@@ -25,4 +25,7 @@ public:
     int getRate();
     void setWin(bool _win);
     
+
+    friend std::ostream& operator << (std::ostream& output, const Customer& cstmr);
+
 };
